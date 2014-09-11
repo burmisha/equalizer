@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>Equalizr</title>
     <script src="http://yastatic.net/jquery/1.11.1/jquery.js"></script>
     <style>
@@ -23,9 +24,16 @@
           width: 300px;
           height: 300px;
       }
+      span {
+          transition: height 1s linear;
+      }
     </style>
     <script>
-      function setEqualizer(selector, timeout, colWidth) {
+      var k = true;
+      function setEqualizer(currentValue, i, a) {
+        selector = currentValue;
+        timeout = 1000;
+        colWidth = 5;
           if (!colWidth) {
               colWidth = 1;
           }
@@ -51,31 +59,37 @@
                   borderTop: '2px solid red'
               });
           }
-      
-          run_equalizer(selector, timeout);
       }
       
-      function run_equalizer (selector, timeout) {
-          $(selector + ' span').each(function (i) {
-              var colHeight = Math.round($(selector).height() * Math.random());
-              $(this).height(colHeight);
-          });
-      
-          $(selector + ' span').animate(
-              {height: $(selector).height()/2},
-              timeout,
-              'linear',
-              function () {
-                  run_equalizer(selector, timeout);
-              }
-          );
+      function get_height(random, maxValue) {
+        if (random) {
+         return Math.round(maxValue * Math.random())
+        } else {
+          return maxValue/2;
+        };
       }
+
+      function run_equalizer (selector) {
+        timeout = 1000;
+        $(selector + ' span').each(function (i) {
+          var colHeight = get_height(k, $(selector).height());
+          $(this).height(colHeight);
+        });
+      }
+      
+      equalizers = ["#eq_1 .equalizer", '#eq_2 .equalizer', '#eq_3 .equalizer'];
       
       window.onload = function () {
-          setEqualizer('#eq_1 .equalizer', 1000, 10);
-          // setEqualizer('#eq_2 .equalizer', 1000, 2);
-          // setEqualizer('#eq_3 .equalizer', 1000, 2);
+          equalizers.forEach(setEqualizer);
       }
+
+      window.setInterval(function() {
+          equalizers.forEach(run_equalizer);
+          k = ! k;
+        },
+        1000
+      );
+
     </script>
   </head>
   <body>
