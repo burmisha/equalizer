@@ -25,14 +25,14 @@
           height: 300px;
       }
       span {
-          transition: height 1s linear;
+          transition: height 0.5s linear;
       }
     </style>
     <script>
       var k = true;
+      timeout = 500; // synced with css
       function setEqualizer(currentValue, i, a) {
         selector = currentValue;
-        timeout = 1000;
         colWidth = 5;
           if (!colWidth) {
               colWidth = 1;
@@ -41,8 +41,7 @@
               verticalAlign: 'bottom',
               lineHeight: $(selector).height() + 'px'
           });
-      
-          // Кол-во столбиков
+
           var colQuantity = Math.ceil($(selector).width()/colWidth);
           var cols = new Array(colQuantity);
           for (var i = 0; i < cols.length; i++) {
@@ -50,17 +49,17 @@
               span.css({
                   verticalAlign: 'bottom',
                   display: 'inline-block',
-      
+
                   fontSize: 0,
                   lineHeight: 0,
-      
+
                   width: colWidth,
                   background: 'pink',
                   borderTop: '2px solid red'
               });
           }
       }
-      
+
       function get_height(random, maxValue) {
         if (random) {
          return Math.round(maxValue * Math.random())
@@ -70,15 +69,14 @@
       }
 
       function run_equalizer (selector) {
-        timeout = 1000;
         $(selector + ' span').each(function (i) {
           var colHeight = get_height(k, $(selector).height());
           $(this).height(colHeight);
         });
       }
-      
+
       equalizers = ["#eq_1 .equalizer", '#eq_2 .equalizer', '#eq_3 .equalizer'];
-      
+
       window.onload = function () {
           equalizers.forEach(setEqualizer);
       }
@@ -87,7 +85,7 @@
           equalizers.forEach(run_equalizer);
           k = ! k;
         },
-        1000
+        timeout
       );
 
     </script>
