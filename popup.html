@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ШРИ 2014 ЕКБ — Попапы</title>
+		<link rel="stylesheet" type="text/css" href="http://yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="http://yastatic.net/jquery/1.11.1/jquery.js"></script>
+		<script src="http://yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<style type='text/css'>
+			.vertical-alignment-helper {
+			display:table;
+			height: 100%;
+			width: 100%;
+			pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+		}
+		.vertical-align-center {
+			/* To center vertically */
+			display: table-cell;
+			vertical-align: middle;
+			pointer-events:none;
+		}
+		.modal-content {
+			/* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+			width:inherit;
+			height:inherit;
+			/* To center horizontally */
+			margin: 0 auto;
+		}
+		</style>
+
+	</head>
+	<body>
+		<div class="col-lg-6 col-lg-offset-3" id="main">
+  			<h1>Варианты вёрстки попапов</h1>
+  			Подобное задание стояло передо мной впервые: я обычно делаю какую-то статику.
+  			Понял задачу именно как показ модального окна пользователю. Я не особо понимаю, чем различаются все эти библиотеки и на что следует обращать внимание. Надеюсь, учёба ШРИ поможет (или заставит) в этом разобраться.
+  			<h3>Модальные окна, как в bootstrap.js</h3>
+  			Основано на <a tahref="http://stackoverflow.com/questions/18053408/vertically-centering-bootstrap-modal-window">stackoverflow-18053408</a>.
+  			<h4>Пример</h4>
+			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="vertical-alignment-helper">
+			        <div class="modal-dialog vertical-align-center">
+			            <div class="modal-content">
+			                <div class="modal-header">
+			                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+
+			                    </button>
+			                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+
+			                </div>
+			                <div class="modal-body">...</div>
+			                <div class="modal-footer">
+			                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			                    <button type="button" class="btn btn-primary">Save changes</button>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			<h4>Плюсы</h4>
+			<ul>
+				<li>Почти стандартное решение.</li>
+			</ul>
+			<h4>Минусы</h4>
+			<ul>
+				<li>Привязанность к большим внешним библиотекам.</li>
+			</ul>
+
+			<h3>Какие-то другие библиотеки</h3>
+			Различные библиотеки по теме <a href="https://www.google.ru/search?q=modal%20window%20js">modal window js</a>
+			<h4>Плюсы</h4>
+			<ul>
+				<li>Часто выглядит симпатично.</li>
+			</ul>
+			<h4>Минусы</h4>
+			<ul>
+				<li>Возможные трудности интеграции с существующим кодом.</li>
+				<li>Зачастую неясный статус: будет ли кто-нибудь это поддерживать.</li>
+			</ul>
+		</div>
+	</body>
+</html>
